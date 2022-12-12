@@ -16,25 +16,25 @@ let resultContainer = document.getElementById('results-container');
 
 // ******CONSTRUCTORS******
 
-function Product(name){
+function Product(name, imgExtension = 'jpg') {
   this.name = name;
-  this.img = `img/${name}.jpg`;
+  this.img = `img/${name}.${imgExtension}`;
   this.votes = 0;
   this.views = 0;
 }
 
 // *******FUNCTIONS/UTILITIES******
 
-function randomIndex(){
+function randomIndex() {
   return Math.floor(Math.random() * productArray.length);
 }
 
-function renderImg(){
+function renderImg() {
   let imgOneIndex = randomIndex();
   let imgTwoIndex = randomIndex();
   let imgThreeIndex = randomIndex();
 
-  while(imgOneIndex === imgTwoIndex || imgOneIndex === imgThreeIndex || imgTwoIndex === imgThreeIndex){
+  while (imgOneIndex === imgTwoIndex || imgOneIndex === imgThreeIndex || imgTwoIndex === imgThreeIndex) {
     imgTwoIndex = randomIndex();
     imgThreeIndex = randomIndex();
   }
@@ -56,12 +56,12 @@ function renderImg(){
 
 // ******EVENT HANDLERS******
 
-function handleClick(event){
+function handleClick(event) {
 
   let imgClicked = event.target.title;
 
-  for(let i = 0; i < productArray.length; i++){
-    if(imgClicked === productArray[i].name){
+  for (let i = 0; i < productArray.length; i++) {
+    if (imgClicked === productArray[i].name) {
       productArray[i].votes++;
     }
   }
@@ -70,16 +70,16 @@ function handleClick(event){
 
   renderImg();
 
-  if(votesLeft === 0){
+  if (votesLeft === 0) {
     imgContainer.removeEventListener('click', handleClick);
   }
 }
 
-function handleResults(){
-  if(votesLeft === 0){
-    for(let i = 0; i < productArray.length; i++){
+function handleResults() {
+  if (votesLeft === 0) {
+    for (let i = 0; i < productArray.length; i++) {
       let liElem = document.createElement('li');
-      liElem.innerText = `${productArray[i].name} views: ${productArray[i].views}. votes: ${productArray[i].votes}.`;
+      liElem.innerText = `${productArray[i].name} had ${productArray[i].votes} votes and was seen ${productArray[i].views} times.`;
       resultContainer.appendChild(liElem);
     }
     resultContainer.removeEventListener('click', handleResults);
@@ -102,7 +102,7 @@ let pen = new Product('pen');
 let petSweep = new Product('pet-sweep');
 let scissors = new Product('scissors');
 let shark = new Product('shark');
-let sweep = new Product('sweep');
+let sweep = new Product('sweep', 'png');
 let tauntaun = new Product('tauntaun');
 let unicorn = new Product('unicorn');
 let waterCan = new Product('water-can');
