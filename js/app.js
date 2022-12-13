@@ -14,6 +14,11 @@ let chartObj = {
       label: '# of Votes',
       data: [],
       borderWidth: 1
+    },
+    {
+      label: '# of Views',
+      data: [],
+      borderWidth: 1
     }]
   },
   options: {
@@ -122,7 +127,7 @@ function handleResults() {
       // resultContainer.appendChild(liElem);
       chartObj.data.labels.push(productArray[i].name);
       chartObj.data.datasets[0].data.push(productArray[i].votes);
-
+      chartObj.data.datasets[1].data.push(productArray[i].views);
     }
     new Chart(ctx, chartObj);
     resultContainer.removeEventListener('click', handleResults);
