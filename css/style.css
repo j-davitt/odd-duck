@@ -11,7 +11,7 @@ body {
 
 h1 {
   font-size: 10vw;
-  color:
+  /* color: */
 }
 
 section {
@@ -32,4 +32,12 @@ button {
   height: 50px;
   width: 100px;
   background-color: #F39549;
+}
+
+div {
+  display: flex;
+  width: 90%;
+  height: auto;
+  margin: auto;
+  align-items: center;
 }
