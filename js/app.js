@@ -4,7 +4,7 @@
 
 let votesLeft = 25;
 let productArray = [];
-let previousIndex = [];
+let indexArray = [];
 
 let chartObj = {
   type: 'bar',
@@ -58,30 +58,16 @@ function randomIndex() {
 
 function renderImg() {
 
-  let imgOneIndex = randomIndex();
-  let imgTwoIndex = randomIndex();
-  let imgThreeIndex = randomIndex();
-
-  // while (imgOneIndex === imgTwoIndex || imgOneIndex === imgThreeIndex || imgTwoIndex === imgThreeIndex) {
-  //   imgTwoIndex = randomIndex();
-  //   imgThreeIndex = randomIndex();
-  // }
-
-  while (previousIndex.indexOf(imgOneIndex) >= 0 || imgOneIndex === imgTwoIndex || imgOneIndex === imgThreeIndex) {
-    imgOneIndex = randomIndex();
+  while (indexArray.length < 6) {
+    let randNum = randomIndex();
+    if (!indexArray.includes(randNum)) {
+      indexArray.push(randNum);
+    }
   }
 
-  while (previousIndex.indexOf(imgTwoIndex) >= 0 || imgTwoIndex === imgOneIndex || imgTwoIndex === imgThreeIndex) {
-    imgTwoIndex = randomIndex();
-  }
-
-  while (previousIndex.indexOf(imgThreeIndex) >= 0 || imgThreeIndex === imgOneIndex || imgThreeIndex === imgTwoIndex) {
-    imgThreeIndex = randomIndex();
-  }
-
-  previousIndex = [];
-
-  previousIndex.push(imgOneIndex, imgTwoIndex, imgThreeIndex);
+  let imgOneIndex = indexArray.shift();
+  let imgTwoIndex = indexArray.shift();
+  let imgThreeIndex = indexArray.shift();
 
   imgOne.src = productArray[imgOneIndex].img;
   imgTwo.src = productArray[imgTwoIndex].img;
